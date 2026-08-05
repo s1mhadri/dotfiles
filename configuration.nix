@@ -15,7 +15,6 @@
     home = "/Users/${user}";
   };
 
-
   ##########################################################################
   ## 2. Nix Configuration
   ##########################################################################
@@ -28,4 +27,35 @@
 
   # Allow proprietary packages.
   nixpkgs.config.allowUnfree = true;
+
+  ##########################################################################
+  ## 3. macOS System Preferences
+  ##########################################################################
+
+  system.defaults = {
+    NSGlobalDomain = {
+      AppleInterfaceStyle = "Dark";
+
+      # Keyboard
+      KeyRepeat = 2;
+      InitialKeyRepeat = 15;
+
+      # UI
+      _HIHideMenuBar = true;
+      AppleShowAllExtensions = true;
+    };
+
+    dock = {
+      autohide = true;
+    };
+
+    finder = {
+      FXPreferredViewStyle = "Clmv"; # Column view
+      CreateDesktop = false;
+    };
+
+    trackpad = {
+      Clicking = false;
+    };
+  };
 }
