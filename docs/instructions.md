@@ -45,3 +45,11 @@
     ````sh
     sudo darwin-rebuild switch --flake path/to/flake/file#mac
     ````
+
+11. To apply the nix configuration after any changes, run the [rebuild.sh](../rebuild.sh) script.
+
+    But first make the script executable. Run the following from repo root:
+    
+    ````sh
+    chmod +x rebuild.sh
+    ````
