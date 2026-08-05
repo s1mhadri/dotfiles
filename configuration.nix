@@ -58,4 +58,41 @@
       Clicking = false;
     };
   };
+
+  ##########################################################################
+  ## 4. Homebrew
+  ##########################################################################
+
+  # Install and manage Homebrew through Nix.
+  nix-homebrew = {
+    enable = true;
+    inherit user;
+  };
+
+  # Configure Homebrew packages and settings.
+  homebrew = {
+    enable = true;
+
+    onActivation = {
+      cleanup = "zap";
+      autoUpdate = true;
+      extraFlags = [ "--force" ];
+    };
+
+    # Command-line tools
+    brews = [
+      "nvm"
+      "llama.cpp"
+      "ollama"
+      "pi-coding-agent"
+      "opencode"
+    ];
+
+    # GUI applications
+    casks = [
+      "wezterm"
+      "codex-app"
+      "opencode-desktop"
+    ];
+  };
 }

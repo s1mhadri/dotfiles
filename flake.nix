@@ -10,6 +10,8 @@
       url = "github:nix-darwin/nix-darwin/nix-darwin-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-homebrew.url = "github:zhaofengli/nix-homebrew";
   };
 
   outputs =
@@ -17,6 +19,7 @@
       self,
       nixpkgs,
       nix-darwin,
+      nix-homebrew,
       ...
     }:
     let
@@ -28,6 +31,8 @@
         specialArgs = { inherit user; };
         modules = [
           ./configuration.nix
+
+          nix-homebrew.darwinModules.nix-homebrew
         ];
       };
     };
