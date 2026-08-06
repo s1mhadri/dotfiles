@@ -21,7 +21,7 @@ graph TD
 
 ### 1. The Flake (`flake.nix`)
 The Flake is the entry point. Its primary roles are:
-- **Dependency Pinning**: It defines exactly which versions of `nixpkgs`, `nix-darwin`, and `home-manager` are used. This ensures that if you clone this repo on another machine a year from now, you get the exact same environment.
+- **Dependency Pinning**: It defines the inputs (`nixpkgs`, `nix-darwin`, `home-manager`) as named branches. The exact commits are pinned in `flake.lock`, which ensures that if you clone this repo on another machine a year from now, you get the exact same environment.
 - **System Definition**: It defines the `darwinConfigurations.mac`, which tells Nix that this set of modules applies to a machine named "mac".
 
 ### 2. System Configuration (`configuration.nix`)

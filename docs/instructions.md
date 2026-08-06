@@ -25,8 +25,8 @@ Follow these steps to set up your environment on a new macOS machine.
     ````
 
 4. **Initialize Configuration**: 
-    - Ensure `flake.nix` and `configuration.nix` exist.
-    - Run the flake check to generate `flake.lock` and verify integrity:
+    - Ensure `flake.nix`, `configuration.nix`, and `flake.lock` exist.
+    - Run the flake check to verify the configuration evaluates and builds cleanly:
       ````sh
       nix flake check
       ````

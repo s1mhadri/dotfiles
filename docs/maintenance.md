@@ -35,7 +35,7 @@ One of the greatest strengths of Nix is the ability to rollback. If a change bre
 1. Use the boot loader (if applicable) or the `darwin-rebuild` history to switch back to a previous generation.
 2. To manually switch to a previous generation:
    ```sh
-   sudo nix-darwin --switch-generation <generation-number>
+   sudo darwin-rebuild --switch-generation <generation-number>
    ```
 
 ## 🧹 Housekeeping

@@ -47,4 +47,4 @@ After modifying any `.nix` file or the `home/` directory:
 
 - **Declarative**: Most settings (like Zsh and Starship) are defined directly in `home.nix`.
 - **Symlinked**: Complex configurations (like Neovim) are stored in the `home/` directory and symlinked using `mkOutOfStoreSymlink`. This allows for "edit-in-place" without needing to run a rebuild for every minor tweak.
-- **Reproducible**: Versions are pinned in `flake.nix` to ensure the environment remains stable over time.
+- **Reproducible**: Branch refs are set in `flake.nix` and exact commits are pinned in `flake.lock`, keeping the environment stable over time.
