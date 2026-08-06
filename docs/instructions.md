@@ -1,55 +1,100 @@
-1. Go to [determinate-systems](https://docs.determinate.systems/) and follow the Getting started section
+# Setup & Usage Instructions
 
-2. For macOS, download the package or run the following command in terminal
+This guide covers everything from the initial installation to the daily maintenance of your Nix-managed dotfiles.
+
+## 🛠️ Initial Installation
+
+Follow these steps to set up your environment on a new macOS machine.
+
+1. **Install Nix**: Go to [determinate-systems](https://docs.determinate.systems/) and follow the Getting started section.
+    For macOS, run:
     ````sh
     curl -fsSL https://install.determinate.systems/nix | sh -s -- install
     ````
 
-3. Create the repo where you would normally save your github repos and call it `dotfiles/`
+2. **Clone the Repo**: Create a directory for your dotfiles and initialize git.
     ````sh
-    cd path/to/github/repos
-    mkdir dotfiles
+    mkdir -p ~/github/dotfiles
+    cd ~/github/dotfiles
+    # (Clone your repository here or git init)
     ````
 
-4. Initialize git in the repo for tracking and versioning
+3. **Create Symlink**: Create a symbolic link from this repo to a fixed location in your home directory. This is required for the `rebuild.sh` script and symlinked configs to work.
     ````sh
-    git init
+    ln -sfn $(pwd) ~/.dotfiles
     ````
 
-5. Create a symbolic link from this repo to a fixed location in home directory
+4. **Initialize Configuration**: 
+    - Ensure `flake.nix` and `configuration.nix` exist.
+    - Run the flake check to generate `flake.lock` and verify integrity:
+      ````sh
+      nix flake check
+      ````
+
+5. **First-Time Install**: Run the initial installation command.
     ````sh
-    ln -sfn path/to/repo/dotfiles/ ~/.dotfiles
+    sudo nix run nix-darwin -- switch --flake .#mac
     ````
+    *Note: The `#mac` part refers to the `darwinConfigurations.mac` attribute in `flake.nix`.*
 
-6. Use [nix-darwin](https://github.com/nix-darwin/nix-darwin) for managing macOS using nix
-
-7. Create the boilerplate `flake.nix` and `configuration.nix` files
-
-8. run the flake check command and verify there are no errors
-    ````sh
-    nix flake check
-    ````
-    you will get `flake.lock`. This locks exact revisions of:
-    - nixpkgs
-    - nix-darwin
-    
-    so future builds are reproducible.
-
-9. For the first time, run the initial installation command
-    ````sh
-    sudo nix run nix-darwin -- switch --flake path/to/flake/file#mac
-    ````
-    The `#mac` part refers to `darwinConfigurations.mac = ...` attribute.
-
-10. After nix-darwin is installed and managing the system, you normally use:
-    ````sh
-    sudo darwin-rebuild switch --flake path/to/flake/file#mac
-    ````
-
-11. To apply the nix configuration after any changes, run the [rebuild.sh](../rebuild.sh) script.
-
-    But first make the script executable. Run the following from repo root:
-    
+6. **Prepare Rebuild Script**: Make the convenience script executable.
     ````sh
     chmod +x rebuild.sh
     ````
+
+---
+
+## 🔄 Daily Workflow
+
+Once installed, you don't need to use the long `nix run` commands.
+
+### Applying Changes
+Whenever you modify a `.nix` file (like `home.nix` or `configuration.nix`):
+```sh
+./rebuild.sh
+```
+This script automatically updates the `~/.dotfiles` symlink and triggers `darwin-rebuild switch`.
+
+### Updating Packages
+To update all your Nix packages and inputs to their latest versions (as defined in your pins):
+```sh
+nix flake update
+./rebuild.sh
+```
+
+---
+
+## 🎨 Customization Guide
+
+### 📦 Adding Software
+Depending on the type of software, you add it in different places:
+
+- **General CLI Tools (Nix)**: Add to the `home.packages` list in `home.nix`.
+  - *Example: Adding `htop` $\rightarrow$ Add `htop` to the list in `home.nix`.*
+- **macOS Apps/Brew Formulas (Homebrew)**: Add to `homebrew.brews` or `homebrew.casks` in `configuration.nix`.
+  - *Example: Adding `Visual Studio Code` $\rightarrow$ Add `"visual-studio-code"` to `homebrew.casks`.*
+
+### ⚙️ Changing System Preferences
+Modify the `system.defaults` section in `configuration.nix` to change macOS behaviors (e.g., Dock settings, Finder views, or Dark Mode).
+
+### 👤 Using on a Different Machine
+If you use this repo on a different Mac with a different username:
+1. Open `flake.nix`.
+2. Change the `user` variable: `let user = "your-username"; in ...`.
+3. Run `./rebuild.sh`.
+
+---
+
+## 🧩 Understanding Configuration Methods
+
+This repo uses two different strategies for managing configurations:
+
+### 1. Declarative (The Nix Way)
+Settings for **Zsh**, **Starship**, and **Home Manager** are defined directly inside `.nix` files.
+- **Pros**: Extremely reproducible; one file defines the entire state.
+- **Cons**: Requires running `./rebuild.sh` to apply changes.
+
+### 2. Symlinked (The "Edit-in-Place" Way)
+Complex configs (like **Neovim** and **Wezterm**) are stored as folders in `home/.config/` and symlinked to your home directory using `mkOutOfStoreSymlink`.
+- **Pros**: You can edit the config file (e.g., `nvim ~/.config/nvim/init.lua`), save it, and the changes take effect immediately without a rebuild.
+- **Cons**: The files are managed by the filesystem rather than the Nix store.
