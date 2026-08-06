@@ -86,6 +86,7 @@
       "ollama"
       "pi-coding-agent"
       "opencode"
+      "herdr"
     ];
 
     # GUI applications

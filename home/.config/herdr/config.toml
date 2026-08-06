@@ -1,0 +1,15 @@
+[keys]
+prefix = "ctrl+space"
+copy_mode = "prefix+y"  # herdr's copy-mode entry key; copy-mode's own internal keys (v/space select, y/Enter copy, q/Esc cancel) aren't configurable
+
+[ui]
+# Agents panel order: explicit choice of "spaces" (grouped by space, the default) over "priority".
+agent_panel_sort = "spaces"
+
+[ui.toast]
+delivery = "terminal"
+
+[theme]
+name = "rose-pine"
+auto_switch = false
+
