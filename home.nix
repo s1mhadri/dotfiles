@@ -43,12 +43,9 @@ in
     autosuggestion.enable = true;      # ghost text from history
     syntaxHighlighting.enable = true;  # commands turn green when valid
     initContent = ''
-      # Enable vi-style keybindings
-      # Esc switches from Insert mode to Normal (command) mode
-      bindkey -v
+      ${builtins.readFile ./zsh/keybindings.zsh}
 
-      # Accept the autosuggestion with Ctrl-F while in Insert mode
-      bindkey -M viins '^f' autosuggest-accept
+      ${builtins.readFile ./zsh/functions.zsh}
     '';
     shellAliases = {
       ".." = "cd ..";
