@@ -10,6 +10,11 @@ config.macos_window_background_blur = 80
 config.hide_tab_bar_if_only_one_tab = true
 config.initial_cols = 150
 config.initial_rows = 50
+config.window_frame = {
+  font_size = 14.0,
+  inactive_titlebar_bg = '#353535',
+  active_titlebar_bg = '#2b2042',
+}
 
 return config
 
