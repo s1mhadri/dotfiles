@@ -87,6 +87,7 @@
       "pi-coding-agent"
       "opencode"
       "herdr"
+      "mactop"
     ];
 
     # GUI applications
