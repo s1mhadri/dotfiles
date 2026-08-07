@@ -10,7 +10,6 @@ in
   home.stateVersion = "24.11";
 
   home.packages = with pkgs; [
-    # cli i use constantly
     ripgrep   # fast search
     fd        # fast find
     fzf       # fuzzy finder
@@ -44,7 +43,6 @@ in
     syntaxHighlighting.enable = true;  # commands turn green when valid
     initContent = ''
       ${builtins.readFile ./zsh/keybindings.zsh}
-
       ${builtins.readFile ./zsh/functions.zsh}
     '';
     shellAliases = {
