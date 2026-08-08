@@ -13,7 +13,6 @@ in
     jq
     ripgrep   # fast search
     fd        # fast find
-    fzf       # fuzzy finder
     lazygit
     neovim
     cmake
