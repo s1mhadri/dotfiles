@@ -1,0 +1,12 @@
+{
+  "theme": "dark",
+  "defaultProvider": "llamacpp",
+  "defaultModel": "unsloth/gemma-4-12b-it-GGUF:Q8_K_XL",
+  "outputPad": 0,
+  "autocompleteMaxVisible": 7,
+  "quietStartup": false,
+  "collapseChangelog": true,
+  "packages": [
+    "npm:pi-web-access@0.14.0"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "providers": {
+    "ollama": {
+      "api": "openai-completions",
+      "apiKey": "ollama",
+      "baseUrl": "http://127.0.0.1:11434/v1",
+      "models": [
+        {
+          "_launch": true,
+          "contextWindow": 262144,
+          "id": "gemma4:31b-cloud",
+          "input": [
+            "text"
+          ]
+        }
+      ]
+    },
+    "llamacpp": {
+      "api": "openai-completions",
+      "apiKey": " ",
+      "baseUrl": "http://127.0.0.1:8080/v1",
+      "models": [
+        {
+          "id": "unsloth/gemma-4-12b-it-GGUF:Q8_K_XL"
+        },
+        { 
+          "id": "bartowski/Kwaipilot_KAT-Coder-V2.5-Dev-GGUF:Q4_K_M"
+        },
+        {
+          "id": "unsloth/Qwen3.6-35B-A3B-GGUF:Q4_K_M"
+        }
+      ]
+    }
+  }
+}
