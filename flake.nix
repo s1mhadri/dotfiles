@@ -17,6 +17,10 @@
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    home-manager-unstable = {
+      url = "github:nix-community/home-manager/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -26,6 +30,7 @@
       nix-darwin,
       nix-homebrew,
       home-manager,
+      home-manager-unstable,
       ...
     }:
     let
@@ -47,7 +52,7 @@
               useUserPackages = true;
 
               extraSpecialArgs = {
-                inherit user;
+                inherit user home-manager-unstable;
               };
 
               users.${user} = import ./home.nix;
