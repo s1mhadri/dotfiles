@@ -106,6 +106,8 @@ in
   # pi configs
   home.file.".pi/agent/models.json".source =
     config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.pi/agent/models.json";
+  home.file.".config/opencode/opencode.json".source =
+    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.config/opencode/opencode.json";
 
   ######################################################################
   ## pi agent settings.json: merge defaults into the live file on every
