@@ -53,6 +53,7 @@ in
       ls = "eza --long --icons=auto";
       lssz = "eza --long --reverse --sort=size";
       lg = "lazygit";
+      llamaserve = "llama serve --models-max 1 --models-preset ${dotfiles}/home/.config/llamacpp/models.ini";
     };
   };
 
@@ -87,9 +88,10 @@ in
     config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.config/wezterm";
   home.file.".config/herdr".source =
     config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.config/herdr";
-
   home.file.".config/nvim".source =
     config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.config/nvim";
+  home.file.".config/llamacpp".source =
+    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.config/llamacpp";
 
   # Global AGENTS.md file for all agents to read from, symlinked to the same file in each agent's config dir.
   home.file.".claude/CLAUDE.md".source =
