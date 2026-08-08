@@ -84,7 +84,6 @@
       "nvm"
       "llama.cpp"
       "ollama"
-      "pi-coding-agent"
       "opencode"
       "herdr"
       "mactop"
