@@ -7,6 +7,6 @@
   "quietStartup": false,
   "collapseChangelog": true,
   "packages": [
-    "npm:pi-web-access@0.14.0"
+    "npm:pi-web-access"
   ]
 }

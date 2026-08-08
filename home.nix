@@ -10,9 +10,9 @@ in
   home.stateVersion = "24.11";
 
   home.packages = with pkgs; [
+    jq
     ripgrep   # fast search
     fd        # fast find
-    fzf       # fuzzy finder
     lazygit
     neovim
     cmake
@@ -104,6 +104,25 @@ in
   # pi configs
   home.file.".pi/agent/models.json".source =
     config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.pi/agent/models.json";
-  home.file.".pi/agent/settings.json".source =
-    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.pi/agent/settings.json";
+
+  ######################################################################
+  ## pi agent settings.json: merge defaults into the live file on every
+  ## switch, without clobbering keys the app/user has changed at runtime.
+  ## Keys in settings.default.json always win on conflicts; anything else
+  ## already in settings.json (app state, etc.) is preserved.
+  ######################################################################
+  home.activation.piAgentSettings = config.lib.dag.entryAfter [ "writeBoundary" ] ''
+    target="${config.home.homeDirectory}/.pi/agent/settings.json"
+    defaults="${dotfiles}/home/.pi/agent/settings.default.json"
+    tmp="$(mktemp)"
+
+    if [ -e "$target" ]; then
+      ${pkgs.jq}/bin/jq -s '.[0] * .[1]' "$target" "$defaults" > "$tmp"
+    else
+      cp "$defaults" "$tmp"
+    fi
+
+    $DRY_RUN_CMD install -D -m644 "$tmp" "$target"
+    rm -f "$tmp"
+  '';
 }
