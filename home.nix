@@ -10,21 +10,23 @@ in
   home.stateVersion = "24.11";
 
   home.packages = with pkgs; [
-    jq
-    ripgrep   # fast search
-    fd        # fast find
-    lazygit
-    neovim
+    # cli tools
     cmake
     eza
+    fd        # fast find
     ffmpeg
     gh
     gnupg
+    jq
+    lazygit
     livekit
     livekit-cli
+    neovim
     pnpm
     rbenv
+    ripgrep   # fast search
     uv
+    yt-dlp
     # fonts
     nerd-fonts.hack
   ];
