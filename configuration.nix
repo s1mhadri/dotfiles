@@ -97,6 +97,7 @@
       "opencode-desktop"
       "obsidian"
       "visual-studio-code"
+      "antigravity-cli"
     ];
   };
 }
