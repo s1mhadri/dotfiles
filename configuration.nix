@@ -95,6 +95,8 @@
       "wezterm"
       "codex-app"
       "opencode-desktop"
+      "obsidian"
+      "visual-studio-code"
     ];
   };
 }
