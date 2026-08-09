@@ -11,6 +11,7 @@ in
 
   home.packages = with pkgs; [
     # cli tools
+    bat
     cmake
     eza
     fd        # fast find
