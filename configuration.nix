@@ -92,12 +92,12 @@
 
     # GUI applications
     casks = [
-      "wezterm"
-      "codex-app"
-      "opencode-desktop"
-      "obsidian"
-      "visual-studio-code"
       "antigravity-cli"
+      "chatgpt"
+      "obsidian"
+      "opencode-desktop"
+      "visual-studio-code"
+      "wezterm"
     ];
   };
 }
