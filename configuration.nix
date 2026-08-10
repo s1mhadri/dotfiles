@@ -41,7 +41,7 @@
       InitialKeyRepeat = 15;
 
       # UI
-      _HIHideMenuBar = true;
+      _HIHideMenuBar = false;
       AppleShowAllExtensions = true;
     };
 
