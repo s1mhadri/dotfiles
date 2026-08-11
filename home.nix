@@ -26,6 +26,7 @@ in
     pnpm
     rbenv
     ripgrep   # fast search
+    rustup
     uv
     yt-dlp
     # fonts
@@ -33,6 +34,9 @@ in
   ];
 
   home.sessionVariables.EDITOR = "nvim";
+  home.sessionPath = [
+    "${config.home.homeDirectory}/.cargo/bin"
+  ];
 
   fonts.fontconfig.enable = true;
 
@@ -133,5 +137,13 @@ in
 
     $DRY_RUN_CMD install -D -m644 "$tmp" "$target"
     rm -f "$tmp"
+  '';
+
+  home.activation.installRust = config.lib.dag.entryAfter ["writeBoundary"] ''
+    export PATH="${pkgs.rustup}/bin:$PATH"
+    if [ ! -x "${config.home.homeDirectory}/.cargo/bin/rustc" ]; then
+      $DRY_RUN_CMD rustup toolchain install stable
+      $DRY_RUN_CMD rustup default stable
+    fi
   '';
 }
