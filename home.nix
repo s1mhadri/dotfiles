@@ -36,6 +36,7 @@ in
   home.sessionVariables.EDITOR = "nvim";
   home.sessionPath = [
     "${config.home.homeDirectory}/.cargo/bin"
+    "${config.home.homeDirectory}/.local/bin"
   ];
 
   fonts.fontconfig.enable = true;
@@ -49,6 +50,13 @@ in
     autosuggestion.enable = true;      # ghost text from history
     syntaxHighlighting.enable = true;  # commands turn green when valid
     initContent = ''
+      typeset -U path
+      path=(
+        "$HOME/.cargo/bin"
+        "$HOME/.local/bin"
+        $path
+      )
+      export PATH
       ${builtins.readFile ./zsh/keybindings.zsh}
       ${builtins.readFile ./zsh/functions.zsh}
     '';
