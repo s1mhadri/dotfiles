@@ -50,6 +50,8 @@ in
     autosuggestion.enable = true;      # ghost text from history
     syntaxHighlighting.enable = true;  # commands turn green when valid
     initContent = ''
+      ${builtins.readFile ./zsh/nvm.zsh}
+
       typeset -U path
       path=(
         "$HOME/.cargo/bin"
