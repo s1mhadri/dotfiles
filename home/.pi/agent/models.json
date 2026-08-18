@@ -21,13 +21,16 @@
       "baseUrl": "http://127.0.0.1:8080/v1",
       "models": [
         {
-          "id": "unsloth/gemma-4-12b-it-GGUF:Q8_K_XL"
-        },
-        { 
-          "id": "bartowski/Kwaipilot_KAT-Coder-V2.5-Dev-GGUF:Q4_K_M"
+          "id": "ornith-ai/Ornith-1.0-35B-GGUF:Q4_K_M"
         },
         {
-          "id": "unsloth/Qwen3.6-35B-A3B-GGUF:Q4_K_M"
+          "id": "bartowski/Kwaipilot_KAT-Coder-V2.5-Dev-GGUF:Q4_K_M"
+        },
+        { 
+          "id": "ornith-ai/Ornith-1.0-9B-GGUF:Q8_0"
+        },
+        {
+          "id": "unsloth/Qwen3.8-27B-GGUF:Q4_K_XL"
         }
       ]
     }
