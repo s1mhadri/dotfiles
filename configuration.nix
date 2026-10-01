@@ -98,6 +98,7 @@
       "opencode-desktop"
       "visual-studio-code"
       "wezterm"
+      "bitwarden"
     ];
   };
 }
